@@ -1,0 +1,46 @@
+.emoji_paint__grid {
+  border-collapse: collapse;
+
+  td {
+    border: 1px solid lightgray;
+    text-align: center;
+    padding: 0;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.emoji-grid__controls {
+  flex: 1;
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+.emoji-grid__control {
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 10px;
+  overflow: hidden;
+  padding: 0.75rem;
+  min-width: 5rem;
+  width: auto;
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.btn_green {
+    background: green;
+    border-color: green;
+    color: white;
+  }
+}
