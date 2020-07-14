@@ -1,94 +1,63 @@
 import React, { useState, useRef } from 'react';
 import { emoji, codes } from '../../emoji-data';
+import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint/emoji-paint';
 import './grid.css';
 
 const Grid = ({ rows, cols, activeEmoji, mode }) => {
-  // const s = 28;
+  rows = rows || DEFAULT_ROWS;
+  cols = cols || DEFAULT_COLS;
   const maxGridWidth = 400;
+  const cellW = maxGridWidth / cols;
+  const fontSize = cellW * 0.625;
   const numCells = rows * cols;
   const [message, setMessage] = useState(new Array(numCells).fill(':blank'));
+  const [disabled, setDisabled] = useState(true);
+  const cellRefs = useRef([]);
+
   const index = emoji.findIndex(el => el === activeEmoji);
   const code = codes[index] || '';
-
-  const cellRefs = useRef([]);
 
   const updateMessage = (index, content) => {
     let msgArr = [...message];
     msgArr[index] = content;
     setMessage(msgArr);
   };
-  const addEmoji = e => {
-    e.preventDefault();
-    const id = e.target.id;
-    const cell = cellRefs.current[id];
-    //console.log(cell);
-    cell.children[0].textContent = activeEmoji;
-    cell.children[0].setAttribute('data-code', code);
-    updateMessage(id, code);
+
+  const copyMessage = () => {
+    const newMessage = message.map(word => (word === ':blank' ? ' ' : word));
+    const finalMsg = newMessage.join('');
+    return document.queryCommandSupported('copy')
+      ? navigator.clipboard.writeText(finalMsg)
+      : null;
   };
-  const paintEmoji = e => {
+
+  /*  Add emoji, Paint emoji, or Erase emoji, depending on state: mode */
+  const updateEmoji = e => {
     e.preventDefault();
     const tag = e.target.tagName;
-    let id = tag === 'TD' ? (id = e.target.id) : e.target.parentElement.id;
+    let id = tag === 'TD' ? e.target.id : e.target.parentElement.id;
     const cell = cellRefs.current[id];
     if (cell) {
-      cell.children[0].textContent = activeEmoji;
-      cell.children[0].setAttribute('data-code', code);
+      if (mode === 'select' || mode === 'paint') {
+        cell.children[0].style.fontSize = fontSize + 'px';
+        cell.children[0].textContent = activeEmoji;
+        cell.children[0].setAttribute('data-code', code);
+        setDisabled(false);
+        updateMessage(id, activeEmoji);
+      } else {
+        cell.children[0].textContent = '';
+        updateMessage(id, '');
+      }
     }
-    updateMessage(id, code);
-  };
-  const eraseEmoji = e => {
-    e.preventDefault();
-    const id = e.target.parentElement.id;
-    const cell = cellRefs.current[id];
-    cell.children[0].textContent = '';
-    updateMessage(id, '');
   };
   const clearAllEmoji = e => {
     e.preventDefault();
     const cellArr = cellRefs.current;
     cellArr.forEach(cell => (cell.children[0].textContent = ''));
+    setDisabled(true);
   };
-  const onDragOver = e => {
-    e.preventDefault();
-    switch (mode) {
-      case 'paint':
-        e.preventDefault();
-        return paintEmoji(e);
-      case 'erase':
-        return eraseEmoji(e);
-      default:
-        return null;
-    }
-  };
-  const onDrop = e => {
-    switch (mode) {
-      case 'paint':
-        e.preventDefault();
-        return addEmoji(e);
-      case 'erase':
-        return eraseEmoji(e);
-      default:
-        return null;
-    }
-  };
-  const onClickCell = e => {
-    switch (mode) {
-      case 'paint':
-        return addEmoji(e);
-      case 'select':
-        return addEmoji(e);
-      case 'erase':
-        return eraseEmoji(e);
-      default:
-        return false;
-    }
-  };
-
-  //useEffect(() => console.log('use effect'));
 
   const drawGrid = (rows, cols) => {
-    let cellW = maxGridWidth / cols;
     const makeRows = [];
     const rowLen = rows;
     for (let r = 0; r < rows; r++) {
@@ -101,10 +70,10 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
             width={cellW}
             height={cellW}
             id={id}
-            onDragOver={e => onDragOver(e)}
+            onDragOver={e => updateEmoji(e)}
             //onDrop={e => onDrop(e)}
             ref={el => (cellRefs.current[id] = el)}
-            onClick={e => onClickCell(e)}
+            onClick={e => updateEmoji(e)}
           >
             <span draggable data-code=":blank" id={`r${r + 1}c${c + 1}`}>
               {''}
@@ -112,6 +81,7 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
           </td>
         );
       }
+
       makeRows.push(<tr key={r}>{cells}</tr>);
     }
     return makeRows;
@@ -127,14 +97,14 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
           <button
             className="emoji-grid__control"
             onClick={clearAllEmoji}
-            // disabled={true}
+            disabled={disabled}
           >
             <span>Clear</span>
           </button>
           <button
             className="emoji-grid__control btn_green"
-            onClick={clearAllEmoji}
-            // disabled={true}
+            onClick={copyMessage}
+            disabled={disabled}
           >
             <span>Copy to Clipboard</span>
           </button>

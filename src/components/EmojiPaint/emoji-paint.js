@@ -48,8 +48,10 @@ export default class EmojiPaint extends Component {
    * @param {Number} dimensions.rows - next height value
    * @param {Number} dimensions.cols - next width value
    */
-  onSizeChange = ({ height, width }) => {
-    this.setState(() => ({ height, width }));
+  onSizeChange = ({ rows, cols }) => {
+    return typeof rows === 'number' && typeof cols === 'number'
+      ? this.setState(() => ({ rows, cols }))
+      : null;
   };
 
   /**
@@ -102,31 +104,31 @@ export default class EmojiPaint extends Component {
           </div>
           <div>
             <label className="emoji-paint__dimension">
-              Columns
-              <input
-                type="text"
-                className="emoji-paint__dimension_input"
-                onBlur={e =>
-                  this.onSizeChange({
-                    width: Number(e.target.value),
-                    height: this.state.rows
-                  })
-                }
-                defaultValue={this.state.cols}
-              />
-            </label>
-            <label className="emoji-paint__dimension">
               Rows
               <input
-                type="text"
+                type="number"
                 className="emoji-paint__dimension_input"
                 onBlur={e =>
                   this.onSizeChange({
-                    height: e.target.value,
-                    width: this.state.rows
+                    rows: Number(e.target.value),
+                    cols: this.state.cols
                   })
                 }
                 defaultValue={this.state.rows}
+              />
+            </label>
+            <label className="emoji-paint__dimension">
+              Cols
+              <input
+                type="number"
+                className="emoji-paint__dimension_input"
+                onBlur={e =>
+                  this.onSizeChange({
+                    cols: Number(e.target.value),
+                    rows: this.state.rows
+                  })
+                }
+                defaultValue={this.state.cols}
               />
             </label>
           </div>

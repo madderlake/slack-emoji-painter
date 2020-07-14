@@ -4,32 +4,6 @@ import EmojiPaint from './components/EmojiPaint/emoji-paint';
 
 import './app.css';
 
-// const EMOJI = [
-//   '😀',
-//   '😁',
-//   '😎',
-//   '😘',
-//   '⬆️',
-//   '➡️',
-//   '⬇️',
-//   '⬅️',
-//   '⚪',
-//   '⚫',
-//   '🔴',
-//   '🔵',
-//   '😎',
-//   '🤪',
-//   '🤡',
-//   '🙌',
-//   '🤐',
-//   '🐶',
-//   '🚗',
-//   '❤️',
-//   '🎂',
-//   '🌳',
-//   '🦅'
-// ];
-
 export default class App extends Component {
   render() {
     return (
