@@ -4,8 +4,8 @@ import Grid from '../EmojiGrid/Grid';
 
 import './emoji-paint.css';
 
-export const DEFAULT_ROWS = 12;
-export const DEFAULT_COLS = 12;
+export const DEFAULT_ROWS = 10;
+export const DEFAULT_COLS = 10;
 
 export default class EmojiPaint extends Component {
   constructor(props) {
