@@ -32,15 +32,19 @@
   border-radius: 4px;
   border: 1px solid #aaa;
   cursor: pointer;
-  display: inline-block;
-  float: left;
+  display: block;
   font-size: 28px;
   height: 44px;
+  float: left;
   line-height: 42px;
   margin-right: 10px;
   overflow: hidden;
   padding: 2px;
   width: 60px;
+  appearance: none;
+  &.active {
+    border: 2px solid green;
+  }
 }
 
 .emoji-paint__control_icon {

@@ -63,13 +63,17 @@ export default class EmojiPaint extends Component {
         <div className="emoji-paint__toolbar">
           <div className="emoji-paint__controls">
             <button
-              className="emoji-paint__control"
+              className={`emoji-paint__control ${
+                this.state.mode === 'select' ? 'active' : ''
+              }`}
               onClick={this.toggleEmojiPicker}
             >
               {this.state.activeEmoji}
             </button>
             <button
-              className="emoji-paint__control"
+              className={`emoji-paint__control ${
+                this.state.mode === 'paint' ? 'active' : ''
+              }`}
               onClick={e => {
                 this.setState({ mode: 'paint' });
               }}
@@ -81,7 +85,9 @@ export default class EmojiPaint extends Component {
               />
             </button>
             <button
-              className="emoji-paint__control"
+              className={`emoji-paint__control ${
+                this.state.mode === 'erase' ? 'active' : ''
+              }`}
               onClick={e => {
                 this.setState({ mode: 'erase' });
               }}
