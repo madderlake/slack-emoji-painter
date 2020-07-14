@@ -45,11 +45,13 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
         setDisabled(false);
         updateMessage(id, activeEmoji);
       } else {
+        /* mode is Erase */
         cell.children[0].textContent = '';
         updateMessage(id, '');
       }
     }
   };
+
   const clearAllEmoji = e => {
     e.preventDefault();
     const cellArr = cellRefs.current;
@@ -71,11 +73,14 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
             height={cellW}
             id={id}
             onDragOver={e => updateEmoji(e)}
-            //onDrop={e => onDrop(e)}
             ref={el => (cellRefs.current[id] = el)}
             onClick={e => updateEmoji(e)}
           >
-            <span draggable data-code=":blank" id={`r${r + 1}c${c + 1}`}>
+            <span
+              draggable={mode === 'paint' ? true : false}
+              data-code=":blank"
+              id={`r${r + 1}c${c + 1}`}
+            >
               {''}
             </span>
           </td>
