@@ -16,7 +16,6 @@ export default class EmojiPaint extends Component {
       rows: DEFAULT_ROWS,
       cols: DEFAULT_COLS,
       isEmojiPickerShowing: false,
-
       mode: 'select'
     };
   }
