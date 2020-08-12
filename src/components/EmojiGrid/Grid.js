@@ -77,7 +77,7 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
             onClick={e => updateEmoji(e)}
           >
             <span
-              draggable={mode === 'paint' ? true : false}
+              draggable={mode === 'paint' || mode === 'erase' ? true : false}
               data-code=":blank"
               id={`r${r + 1}c${c + 1}`}
             >
