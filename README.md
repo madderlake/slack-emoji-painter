@@ -2,7 +2,7 @@
 
 Slack React take-home exercise
 
-This is a take-home exercise for engineers at Slack, which is no longer used. I found it in the docs and tackled it as a React exercise. There was some starter code - i.e. the Emoji Picker and Emoji Paint class, but there were also some bugs that needed to be fixed before the app would load properly.
+This is a take-home exercise for engineers at Slack, which is no longer used. I found it in the docs and tackled it as a React exercise. There was some starter code - i.e. the Emoji Picker and Emoji Paint class, but there were also some bugs that needed to be fixed before the app would load properly (those tricksters!).
 
 If this was my app, I would design it a bit differently. I would make the emojis persistently visible, perhaps as a toolbar.
 
