@@ -43,4 +43,4 @@ We would like to provide users with a way to easily lay out emoji in a grid and 
 
 ### Demo
 
-https://5f0d4ef189a08644f0c708a4--slack-emoji-painter.netlify.app/
+https://slack-emoji-painter.netlify.app/
