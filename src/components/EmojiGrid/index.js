@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { emoji, codes } from '../../emoji-data';
-import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint/emoji-paint';
+import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint';
 import './grid.css';
 
 const Grid = ({ rows, cols, activeEmoji, mode }) => {
@@ -12,8 +12,8 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
   const numCells = rows * cols;
   const [message, setMessage] = useState(new Array(numCells).fill(':blank'));
   const [disabled, setDisabled] = useState(true);
-  const cellRefs = useRef([]);
 
+  const cellRefs = useRef([]);
   const index = emoji.findIndex(el => el === activeEmoji);
   const code = codes[index] || '';
 
