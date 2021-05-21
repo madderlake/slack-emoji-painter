@@ -1,5 +1,5 @@
 {
-  "name": "fe-exercise-paint-by-emoji",
+  "name": "slack-paint-by-emoji",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

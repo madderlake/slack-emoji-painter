@@ -1,7 +1,7 @@
 import React from 'react';
 import './emoji-picker.css';
 
-const EmojiPicker = ({ emoji, codes, onSelect, onClose }) => {
+const EmojiPicker = ({emoji, codes, onSelect, onClose}) => {
   return (
     <div>
       <div className="emoji-picker">
@@ -11,10 +11,8 @@ const EmojiPicker = ({ emoji, codes, onSelect, onClose }) => {
               <li key={`e${index}`}>
                 <button
                   className="emoji-picker__control"
-                  data-code={codes[index]}
                   id={`e${index}`}
-                  onClick={e => onSelect(symbol)}
-                >
+                  onClick={() => onSelect(symbol)}>
                   {symbol}
                 </button>
               </li>
