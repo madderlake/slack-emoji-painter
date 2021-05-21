@@ -1,7 +1,7 @@
 import React from 'react';
 import './emoji-picker.css';
 
-const EmojiPicker = ({emoji, codes, onSelect, onClose}) => {
+const EmojiPicker = ({emoji, onSelect, onClose}) => {
   return (
     <div>
       <div className="emoji-picker">
