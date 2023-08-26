@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import EmojiPicker from '../EmojiPicker';
 import Grid from '../EmojiGrid';
 
-import './emoji-paint.css';
+import '../../index.css';
 
 export const DEFAULT_ROWS = 10;
 export const DEFAULT_COLS = 10;
 
-const EmojiPaint = ({ emoji, codes }) => {
+const EmojiPaint = ({emoji, codes}) => {
   const [state, setState] = useState({
     activeEmoji: emoji[0],
     rows: DEFAULT_ROWS,
     cols: DEFAULT_COLS,
-    isEmojiPickerShowing: false,
-    mode: 'select'
+    pickerIsVisible: false,
+    mode: 'select',
   });
 
   /**
    * Toggle the visibility of the emoji picker
    */
   const toggleEmojiPicker = () => {
-    setState(({ isEmojiPickerShowing }) => ({
+    setState(({pickerIsVisible}) => ({
       ...state,
-      isEmojiPickerShowing: !isEmojiPickerShowing,
-      mode: 'select'
+      pickerIsVisible: !pickerIsVisible,
+      mode: 'select',
     }));
   };
 
@@ -31,11 +31,11 @@ const EmojiPaint = ({ emoji, codes }) => {
    * Set the currently active emoji symbol
    * @param {String} emoji - the next active emoji
    */
-  const updateActiveEmoji = emoji => {
+  const updateActiveEmoji = (emoji) => {
     setState({
       ...state,
       activeEmoji: emoji,
-      isEmojiPickerShowing: false
+      pickerIsVisible: false,
     });
   };
 
@@ -45,9 +45,9 @@ const EmojiPaint = ({ emoji, codes }) => {
    * @param {Number} dimensions.rows - next height value
    * @param {Number} dimensions.cols - next width value
    */
-  const onSizeChange = ({ rows, cols }) => {
+  const onSizeChange = ({rows, cols}) => {
     return typeof rows === 'number' && typeof cols === 'number'
-      ? setState(() => ({ rows, cols }))
+      ? setState(() => ({rows, cols}))
       : null;
   };
 
@@ -63,18 +63,16 @@ const EmojiPaint = ({ emoji, codes }) => {
             className={`emoji-paint__control ${
               state.mode === 'select' ? 'active' : ''
             }`}
-            onClick={toggleEmojiPicker}
-          >
+            onClick={toggleEmojiPicker}>
             {state.activeEmoji}
           </button>
           <button
             className={`emoji-paint__control ${
               state.mode === 'paint' ? 'active' : ''
             }`}
-            onClick={e => {
-              setState({ ...state, mode: 'paint' });
-            }}
-          >
+            onClick={(e) => {
+              setState({...state, mode: 'paint'});
+            }}>
             <img
               className="emoji-paint__control_icon"
               src="brush.png"
@@ -85,21 +83,20 @@ const EmojiPaint = ({ emoji, codes }) => {
             className={`emoji-paint__control ${
               state.mode === 'erase' ? 'active' : ''
             }`}
-            onClick={e => {
-              setState({ ...state, mode: 'erase' });
-            }}
-          >
+            onClick={(e) => {
+              setState({...state, mode: 'erase'});
+            }}>
             <img
               className="emoji-paint__control_icon"
               src="eraser.png"
               alt="eraser"
             />
           </button>
-          {state.isEmojiPickerShowing && (
+          {state.pickerIsVisible && (
             <EmojiPicker
               emoji={emoji}
               codes={codes}
-              onSelect={symbol => updateActiveEmoji(symbol)}
+              onSelect={(symbol) => updateActiveEmoji(symbol)}
               onClose={() => toggleEmojiPicker()}
             />
           )}
@@ -110,10 +107,10 @@ const EmojiPaint = ({ emoji, codes }) => {
             <input
               type="number"
               className="emoji-paint__dimension_input"
-              onBlur={e =>
+              onBlur={(e) =>
                 onSizeChange({
                   rows: Number(e.target.value),
-                  cols: state.cols
+                  cols: state.cols,
                 })
               }
               defaultValue={state.rows}
@@ -124,10 +121,10 @@ const EmojiPaint = ({ emoji, codes }) => {
             <input
               type="number"
               className="emoji-paint__dimension_input"
-              onBlur={e =>
+              onBlur={(e) =>
                 onSizeChange({
                   cols: Number(e.target.value),
-                  rows: state.rows
+                  rows: state.rows,
                 })
               }
               defaultValue={state.cols}

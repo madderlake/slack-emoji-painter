@@ -7,22 +7,27 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^5.0.1",
     "wdt-emoji-bundle": "^0.2.1"
   },
   "scripts": {
-    "build-css": "node-sass src/ -o src/ --recursive",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "build:css": "postcss src/styles/main.css -o src/index.css",
+    "watch:css": "postcss src/styles/main.css -o src/index.css -w",
+    "start": "npm-run-all -p watch:css start-js",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom"
+    "build": "npm-run-all build:css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.15",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "node-sass": "^4.14.1"
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.1.1"
   },
   "browserslist": [
     ">0.2%",

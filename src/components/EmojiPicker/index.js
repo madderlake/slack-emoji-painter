@@ -1,5 +1,5 @@
 import React from 'react';
-import './emoji-picker.css';
+import '../../index.css';
 
 const EmojiPicker = ({emoji, onSelect, onClose}) => {
   return (
@@ -10,6 +10,7 @@ const EmojiPicker = ({emoji, onSelect, onClose}) => {
             emoji.map((symbol, index) => (
               <li key={`e${index}`}>
                 <button
+                  draggable
                   className="emoji-picker__control"
                   id={`e${index}`}
                   onClick={() => onSelect(symbol)}>
