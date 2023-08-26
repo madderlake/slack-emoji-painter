@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.28",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -12,7 +13,7 @@
   },
   "scripts": {
     "build:css": "postcss src/styles/main.css -o src/index.css",
-    "watch:css": "postcss src/styles/main.css -o src/index.css -w",
+    "watch:css": "postcss src/styles/main.css src/styles/grid.css src/styles/emoji-painter.css src/styles/emoji-picker.css -o src/index.css -w",
     "start": "npm-run-all -p watch:css start-js",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
@@ -29,10 +30,9 @@
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.1.1"
   },
-  "engines" : {
-    "node" : ">=14.0.0"
-  }
-,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
