@@ -74,7 +74,6 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
             id={id}
             draggable={mode === 'paint' || mode === 'erase' ? true : false}
             onDragOver={(e) => updateEmoji(e)}
-            onDrop={(e) => updateEmoji(e)}
             ref={(el) => (cellRefs.current[id] = el)}
             onClick={(e) => updateEmoji(e)}>
             <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
