@@ -1,0 +1,17 @@
+@import 'grid.css';
+@import 'emoji-paint.css';
+@import 'emoji-picker.css';
+
+.app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  justify-content: center;
+  background-color: #f5f5f7;
+
+  .emoji-paint {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
+}
