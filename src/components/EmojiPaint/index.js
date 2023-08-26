@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import EmojiPicker from '../EmojiPicker';
 import Grid from '../EmojiGrid';
-
 import '../../index.css';
 
 export const DEFAULT_ROWS = 10;
 export const DEFAULT_COLS = 10;
 
-const EmojiPaint = ({emoji, codes}) => {
+const EmojiPaint = ({ emoji, codes }) => {
   const [state, setState] = useState({
     activeEmoji: emoji[0],
     rows: DEFAULT_ROWS,
@@ -20,7 +19,7 @@ const EmojiPaint = ({emoji, codes}) => {
    * Toggle the visibility of the emoji picker
    */
   const toggleEmojiPicker = () => {
-    setState(({pickerIsVisible}) => ({
+    setState(({ pickerIsVisible }) => ({
       ...state,
       pickerIsVisible: !pickerIsVisible,
       mode: 'select',
@@ -45,9 +44,9 @@ const EmojiPaint = ({emoji, codes}) => {
    * @param {Number} dimensions.rows - next height value
    * @param {Number} dimensions.cols - next width value
    */
-  const onSizeChange = ({rows, cols}) => {
+  const onSizeChange = ({ rows, cols }) => {
     return typeof rows === 'number' && typeof cols === 'number'
-      ? setState(() => ({rows, cols}))
+      ? setState(() => ({ rows, cols }))
       : null;
   };
 
@@ -71,7 +70,7 @@ const EmojiPaint = ({emoji, codes}) => {
               state.mode === 'paint' ? 'active' : ''
             }`}
             onClick={(e) => {
-              setState({...state, mode: 'paint'});
+              setState({ ...state, mode: 'paint' });
             }}>
             <img
               className="emoji-paint__control_icon"
@@ -84,7 +83,7 @@ const EmojiPaint = ({emoji, codes}) => {
               state.mode === 'erase' ? 'active' : ''
             }`}
             onClick={(e) => {
-              setState({...state, mode: 'erase'});
+              setState({ ...state, mode: 'erase' });
             }}>
             <img
               className="emoji-paint__control_icon"

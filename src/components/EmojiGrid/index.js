@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
-import {emoji, codes} from '../../emoji-data';
-import {DEFAULT_ROWS, DEFAULT_COLS} from '../EmojiPaint';
+import React, { useState, useRef } from 'react';
+import { emoji, codes } from '../../emoji-data';
+import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint';
 import '../../index.css';
 
-const Grid = ({rows, cols, activeEmoji, mode}) => {
+const Grid = ({ rows, cols, activeEmoji, mode }) => {
   rows = rows || DEFAULT_ROWS;
   cols = cols || DEFAULT_COLS;
   const maxGridWidth = 400;
