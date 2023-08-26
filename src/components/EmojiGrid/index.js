@@ -51,11 +51,7 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
       }
     }
   };
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    console.log('dragging over');
-    setDisabled(false);
-  };
+
   const clearAllEmoji = (e) => {
     e.preventDefault();
     const cellArr = cellRefs.current;
@@ -81,11 +77,7 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
             onDrop={(e) => updateEmoji(e)}
             ref={(el) => (cellRefs.current[id] = el)}
             onClick={(e) => updateEmoji(e)}>
-            <span
-              onDragOver={(e) => handleDragOver(e)}
-              draggable={mode === 'paint' || mode === 'erase' ? true : false}
-              data-code=":blank"
-              id={`r${r + 1}c${c + 1}`}>
+            <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
               {''}
             </span>
           </td>
