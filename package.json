@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build:css": "postcss src/styles/main.css -o src/index.css",
-    "watch:css": "postcss src/styles/main.css src/styles/grid.css src/styles/emoji-painter.css src/styles/emoji-picker.css -o src/index.css -w",
+    "watch:css": "postcss src/styles/main.css -o src/index.css -w",
     "start": "npm-run-all -p watch:css start-js",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
