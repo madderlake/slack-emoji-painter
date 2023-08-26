@@ -29,6 +29,10 @@
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.1.1"
   },
+  "engines" : {
+    "node" : ">=14.0.0"
+  }
+,
   "browserslist": [
     ">0.2%",
     "not dead",
