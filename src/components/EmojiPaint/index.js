@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EmojiPicker from '../EmojiPicker';
-import Grid from '../EmojiGrid/';
+import { Grid } from '../EmojiGrid/EmojiGrid.tsx';
 import '../../index.css';
 
 export const DEFAULT_ROWS = 10;
