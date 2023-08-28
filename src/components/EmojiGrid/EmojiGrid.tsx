@@ -83,37 +83,43 @@ export const Grid = ({
       }
       makeRows.push(cells);
     }
-    return makeRows.map((row, r) => {
-      return (
-        <tr key={r}>
-          {row.map((_, c) => {
-            const id = r * rows + c;
+    return (
+      <table className={'emoji_paint__grid'}>
+        <tbody>
+          {makeRows.map((row, r) => {
             return (
-              <td
-                key={id}
-                width={cellW}
-                height={cellW}
-                id={id.toString()}
-                ref={(el) => (cellRefs.current[id] = el)}
-                draggable={mode === 'paint' || mode === 'erase' ? true : false}
-                onDragOver={(e: SyntheticEvent) => updateEmoji(e)}
-                onClick={(e) => updateEmoji(e)}>
-                <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
-                  {''}
-                </span>
-              </td>
+              <tr key={r}>
+                {row.map((_, c) => {
+                  const id = r * rows + c;
+                  return (
+                    <td
+                      key={id}
+                      width={cellW}
+                      height={cellW}
+                      id={id.toString()}
+                      ref={(el) => (cellRefs.current[id] = el)}
+                      draggable={
+                        mode === 'paint' || mode === 'erase' ? true : false
+                      }
+                      onDragOver={(e: SyntheticEvent) => updateEmoji(e)}
+                      onClick={(e) => updateEmoji(e)}>
+                      <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
+                        {''}
+                      </span>
+                    </td>
+                  );
+                })}
+              </tr>
             );
           })}
-        </tr>
-      );
-    });
+        </tbody>
+      </table>
+    );
   };
 
   return (
     <div className="emoji_grid__container">
-      <table className={'emoji_paint__grid'}>
-        <tbody>{drawGrid(rows, cols)}</tbody>
-      </table>
+      {drawGrid(rows, cols)}
       <div className="emoji-grid__toolbar">
         <div className="emoji-grid__controls">
           <button

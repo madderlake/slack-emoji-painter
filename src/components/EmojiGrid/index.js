@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { emoji, codes } from '../../emoji-data';
 import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint';
 import '../../index.css';
@@ -16,7 +16,6 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
   const cellRefs = useRef([]);
   const index = emoji.findIndex((el) => el === activeEmoji);
   const code = codes[index] || '';
-  // const rowsArr = [...Array(rows).keys()];
 
   const updateMessage = (index, content) => {
     let msgArr = [...message];
@@ -35,21 +34,19 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
   /*  Add emoji, Paint emoji, or Erase emoji, depending on state: mode */
   const updateEmoji = (e) => {
     e.preventDefault();
-    const id =
-      e.target.tagName === 'TD' ? e.target.id : e.target.parentElement.id;
-    const targetRef = cellRefs.current[id];
-    const childSpan = targetRef.childNodes[0];
-    if (targetRef) {
-      console.log(id, targetRef);
+    const tag = e.target.tagName;
+    let id = tag === 'TD' ? e.target.id : e.target.parentElement.id;
+    const cell = cellRefs.current[id];
+    if (cell) {
       if (mode === 'select' || mode === 'paint') {
-        childSpan.style.fontSize = fontSize + 'px';
-        childSpan.innerHTML = activeEmoji;
-        childSpan.setAttribute('data-code', code);
+        cell.children[0].style.fontSize = fontSize + 'px';
+        cell.children[0].textContent = activeEmoji;
+        cell.children[0].setAttribute('data-code', code);
         setDisabled(false);
         updateMessage(id, activeEmoji);
       } else {
         /* mode is Erase */
-        childSpan.textContent = '';
+        cell.children[0].textContent = '';
         updateMessage(id, '');
       }
     }
@@ -64,37 +61,31 @@ const Grid = ({ rows, cols, activeEmoji, mode }) => {
 
   const drawGrid = (rows, cols) => {
     const makeRows = [];
+    const rowLen = rows;
     for (let r = 0; r < rows; r++) {
-      const cells = [];
+      let cells = [];
       for (var c = 0; c < cols; c++) {
-        cells.push(c);
+        const id = r * rowLen + c;
+        cells.push(
+          <td
+            key={c}
+            width={cellW}
+            height={cellW}
+            id={id}
+            ref={(el) => (cellRefs.current[id] = el)}
+            draggable={mode === 'paint' || mode === 'erase' ? true : false}
+            onDragOver={(e) => updateEmoji(e)}
+            onClick={(e) => updateEmoji(e)}>
+            <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
+              {''}
+            </span>
+          </td>
+        );
       }
-      makeRows.push(cells);
+
+      makeRows.push(<tr key={r}>{cells}</tr>);
     }
-    return makeRows.map((row, r) => {
-      return (
-        <tr key={r}>
-          {row.map((_, c) => {
-            const id = r * rows + c;
-            return (
-              <td
-                key={id}
-                width={cellW}
-                height={cellW}
-                id={id}
-                ref={(el) => (cellRefs.current[id] = el)}
-                draggable={mode === 'paint' || mode === 'erase' ? true : false}
-                onDragOver={(e) => updateEmoji(e)}
-                onClick={(e) => updateEmoji(e)}>
-                <span data-code=":blank" id={`r${r + 1}c${c + 1}`}>
-                  {''}
-                </span>
-              </td>
-            );
-          })}
-        </tr>
-      );
-    });
+    return makeRows;
   };
 
   return (
