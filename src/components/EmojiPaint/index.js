@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EmojiPicker from '../EmojiPicker';
-import { Grid } from '../EmojiGrid/EmojiGrid.tsx';
+import { GridContainer } from '../EmojiGrid/GridContainer.tsx';
 import '../../index.css';
 
 export const DEFAULT_ROWS = 10;
@@ -132,7 +132,7 @@ const EmojiPaint = ({ emoji, codes }) => {
         </div>
       </div>
       <div className="emoji-paint__grid-container">
-        <Grid
+        <GridContainer
           cols={state.cols}
           rows={state.rows}
           activeEmoji={state.activeEmoji}
