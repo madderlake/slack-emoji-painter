@@ -23,7 +23,7 @@ export const GridContainer = ({
   const [message, setMessage] = useState(new Array(numCells).fill(':blank'));
   const [disabled, setDisabled] = useState(true);
 
-  const tableRef = useRef<HTMLTableElement>(null);
+  // const tableRef = useRef<HTMLTableElement>(null);
   //const index = emoji.findIndex((el) => el === activeEmoji);
   //const code = codes[index] || '';
 
@@ -58,7 +58,6 @@ export const GridContainer = ({
         activeEmoji={activeEmoji}
         updateDisabled={setDisabled}
         updateMessage={updateMessage}
-        tableRef={tableRef}
       />
       <div className="emoji-grid__toolbar">
         <div className="emoji-grid__controls">
