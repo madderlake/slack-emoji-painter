@@ -1,5 +1,4 @@
-import React, { useState, useRef, type SyntheticEvent } from 'react';
-//import { emoji, codes } from '../../emoji-data';
+import { useState } from 'react';
 import { DEFAULT_ROWS, DEFAULT_COLS } from '../EmojiPaint';
 import Grid from './Grid';
 import { type GridProps } from './Grid';
@@ -17,19 +16,15 @@ export const GridContainer = ({
   rows = rows || DEFAULT_ROWS;
   cols = cols || DEFAULT_COLS;
   const cellW = 40;
-
-  //const fontSize = cellW * 0.625;
   const numCells = rows * cols; /* */
-  const [message, setMessage] = useState(new Array(numCells).fill(':blank'));
-  const [disabled, setDisabled] = useState(true);
-
-  // const tableRef = useRef<HTMLTableElement>(null);
-  //const index = emoji.findIndex((el) => el === activeEmoji);
-  //const code = codes[index] || '';
+  const [message, setMessage] = useState(new Array(numCells).fill(' '));
+  const emptyMessage = (word: string) => word === '' || word === ' ';
+  const disabled = message.every(emptyMessage) ? true : false;
 
   const updateMessage = (index: number, content: string) => {
     let msgArr = [...message];
     msgArr[index] = content;
+
     setMessage(msgArr);
   };
 
@@ -42,10 +37,7 @@ export const GridContainer = ({
   };
 
   const clearAllEmoji = () => {
-    // cellRefs.current.forEach((cell) => {
-    //   if (cell !== null) cell.childNodes[0].textContent = '';
-    // });
-    setDisabled(true);
+    setMessage(new Array(numCells).fill(''));
   };
 
   return (
@@ -56,7 +48,7 @@ export const GridContainer = ({
         cols={cols}
         mode={mode}
         activeEmoji={activeEmoji}
-        updateDisabled={setDisabled}
+        message={message}
         updateMessage={updateMessage}
       />
       <div className="emoji-grid__toolbar">
