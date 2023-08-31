@@ -40,11 +40,11 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
     return msgGrid;
   };
 
-  const copyMessage = () => {
+  const copyMessage = async () => {
     const gridMsg = formattedMsg(message);
-    return document.queryCommandSupported('copy')
-      ? navigator.clipboard.writeText(gridMsg)
-      : null;
+    navigator.clipboard.writeText(gridMsg).then(() => {
+      alert('message copied!');
+    });
   };
 
   /**
