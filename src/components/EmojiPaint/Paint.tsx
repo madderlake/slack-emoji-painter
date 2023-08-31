@@ -31,12 +31,19 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
   const clearAllEmoji = () => {
     setMessage(new Array(numCells).fill(''));
   };
+  const formattedMsg = (msg: string[]) => {
+    let msgGrid = '';
+    msg.map((word, i) => {
+      msgGrid += word;
+      if ((i + 1) % state.rows === 0) msgGrid += '\n';
+    });
+    return msgGrid;
+  };
 
   const copyMessage = () => {
-    const newMessage = message.map((word) => (word === ':blank' ? ' ' : word));
-    const finalMsg = newMessage.join('');
+    const gridMsg = formattedMsg(message);
     return document.queryCommandSupported('copy')
-      ? navigator.clipboard.writeText(finalMsg)
+      ? navigator.clipboard.writeText(gridMsg)
       : null;
   };
 

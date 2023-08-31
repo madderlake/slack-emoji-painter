@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../index.css';
 
-interface ControlsProps {
+interface ControlProps {
   clearEmoji: () => void;
   disabled: boolean;
   copyMessage: () => void;
@@ -10,7 +10,7 @@ export const Controls = ({
   clearEmoji,
   disabled,
   copyMessage,
-}: ControlsProps): JSX.Element => {
+}: ControlProps): JSX.Element => {
   return (
     <div className="emoji-grid__toolbar">
       <div className="emoji-grid__controls">
