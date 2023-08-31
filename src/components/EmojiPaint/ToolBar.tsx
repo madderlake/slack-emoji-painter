@@ -1,6 +1,5 @@
 import { EmojiPicker } from '../EmojiPicker/Picker';
-import { emoji, codes } from '../../emoji-data';
-import { Dispatch, SetStateAction } from 'react';
+import { emoji } from '../../emoji-data';
 
 interface ToolBarProps {
   state: {
