@@ -10,15 +10,7 @@ interface ToolBarProps {
     rows: number;
     cols: number;
   };
-  setState: Dispatch<
-    SetStateAction<{
-      mode: string;
-      activeEmoji: string;
-      pickerIsVisible: boolean;
-      rows: number;
-      cols: number;
-    }>
-  >;
+  setState: (param: ToolBarProps['state']) => void;
 }
 
 type SizeProps = Pick<ToolBarProps['state'], 'rows' | 'cols'>;
@@ -93,7 +85,6 @@ export const ToolBar = ({ state, setState }: ToolBarProps): JSX.Element => {
         {state.pickerIsVisible && (
           <EmojiPicker
             emoji={emoji}
-            // codes={codes}
             onSelect={(symbol: string) => updateActiveEmoji(symbol)}
             onClose={() => toggleEmojiPicker()}
           />
