@@ -7,7 +7,7 @@ export interface GridProps {
   updateMessage: (id: number, emoji: string) => void;
 }
 
-const Grid = ({
+export const Grid = ({
   rows,
   cols,
   mode,
@@ -17,7 +17,7 @@ const Grid = ({
 }: GridProps): JSX.Element => {
   const cellW = 40;
   const handleCellClick = (rowIndex: number, colIndex: number) => {
-    // Handle cell click logic based on mode and activeEmoji
+    // Handle cell click based on mode and activeEmoji
     const id = rowIndex * cols + colIndex;
     const content = mode === 'paint' || mode === 'select' ? activeEmoji : '';
     updateMessage(id, content);
@@ -49,5 +49,3 @@ const Grid = ({
     </table>
   );
 };
-
-export default Grid;

@@ -5,6 +5,9 @@
   padding: 1em;
 }
 
+.emoji-grid__toolbar {
+  padding: 1em;
+}
 .emoji_paint__grid {
   border-collapse: collapse;
   border-radius: 5px;

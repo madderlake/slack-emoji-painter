@@ -1,13 +1,21 @@
-import React from 'react';
 import '../../index.css';
 
-const EmojiPicker = ({ emoji, onSelect, onClose }) => {
+interface PickerProps {
+  emoji: string[];
+  onSelect: (param: string) => void;
+  onClose: () => void;
+}
+export const EmojiPicker = ({
+  emoji,
+  onSelect,
+  onClose,
+}: PickerProps): JSX.Element => {
   return (
     <div>
       <div className="emoji-picker">
         <ul className="emoji-picker__list">
           {emoji &&
-            emoji.map((symbol, index) => (
+            emoji.map((symbol: string, index: number) => (
               <li key={`e${index}`}>
                 <button
                   className="emoji-picker__control"
@@ -24,5 +32,3 @@ const EmojiPicker = ({ emoji, onSelect, onClose }) => {
     </div>
   );
 };
-
-export default EmojiPicker;

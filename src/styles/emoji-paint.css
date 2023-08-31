@@ -24,6 +24,11 @@
   position: relative;
 }
 
+.emoji-paint__grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
 .emoji-paint__control {
   border-radius: 4px;
   border: 1px solid #aaa;
