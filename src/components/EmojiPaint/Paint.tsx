@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Grid } from '../EmojiGrid/Grid';
 import { ToolBar } from './ToolBar';
-import { Footer } from '../EmojiPaint/Footer';
+import { Controls } from '../EmojiPaint/Controls';
 import '../../index.css';
 
 export const DEFAULT_ROWS = 10;
@@ -66,7 +66,7 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
           />
         </div>
 
-        <Footer
+        <Controls
           clearEmoji={clearAllEmoji}
           copyMessage={copyMessage}
           disabled={disabled}

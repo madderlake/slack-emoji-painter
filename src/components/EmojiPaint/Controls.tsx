@@ -1,16 +1,16 @@
 import React from 'react';
 import '../../index.css';
 
-interface FooterProps {
+interface ControlsProps {
   clearEmoji: () => void;
   disabled: boolean;
   copyMessage: () => void;
 }
-export const Footer = ({
+export const Controls = ({
   clearEmoji,
   disabled,
   copyMessage,
-}: FooterProps): JSX.Element => {
+}: ControlsProps): JSX.Element => {
   return (
     <div className="emoji-grid__toolbar">
       <div className="emoji-grid__controls">
