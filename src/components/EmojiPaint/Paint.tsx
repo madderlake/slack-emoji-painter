@@ -42,7 +42,9 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
 
   const copyMessage = async () => {
     const gridMsg = formattedMsg(message);
-    await navigator.clipboard.writeText(gridMsg);
+    navigator.clipboard.writeText(gridMsg).then(() => {
+      alert('message copied!');
+    });
   };
 
   /**
