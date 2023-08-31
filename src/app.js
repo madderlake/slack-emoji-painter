@@ -1,6 +1,6 @@
 import React from 'react';
 import { emoji, codes } from './emoji-data';
-import EmojiPaint from './components/EmojiPaint';
+import EmojiPaint from './components/EmojiPaint/Paint';
 
 import './app.css';
 

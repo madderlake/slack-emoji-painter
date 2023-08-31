@@ -5,6 +5,10 @@
   padding: 1em;
 }
 
+.emoji-grid__toolbar {
+  padding: 1em;
+}
+
 .emoji_paint__grid {
   border-collapse: collapse;
   border-radius: 5px;
@@ -89,6 +93,12 @@ __grid-container.emoji-paint {
 .emoji-paint__controls {
   flex: 1;
   position: relative;
+}
+
+.emoji-paint__grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
 }
 
 .emoji-paint__control {
