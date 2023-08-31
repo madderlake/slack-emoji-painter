@@ -9,7 +9,6 @@ export const DEFAULT_COLS = 10;
 
 interface PaintProps {
   emoji: string;
-  //codes: string[];
 }
 const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
   const [state, setState] = useState({
