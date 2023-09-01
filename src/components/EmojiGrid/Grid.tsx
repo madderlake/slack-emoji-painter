@@ -39,7 +39,9 @@ export const Grid = ({
                   onClick={() => handleCellClick(rowIndex, colIndex)}
                   draggable={mode === 'select' ? false : true}
                   onDragOver={() => handleCellClick(rowIndex, colIndex)}>
-                  <span data-code=":blank">{content}</span>
+                  <span data-code=":blank">
+                    {content === undefined ? '&nbsp;' : content}
+                  </span>
                 </td>
               );
             })}

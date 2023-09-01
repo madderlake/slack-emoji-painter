@@ -23,6 +23,7 @@ const emojiData = [
   { sym: '⚫', sc: ':black_circle' },
   { sym: '🔴', sc: ':red_circle' },
   { sym: '🔵', sc: ':blue_circle' },
+  { sym: '&nbsp;', sc: ':blank' },
 ];
 export const emoji = emojiData.map((emoji) => emoji.sym);
 export const codes = emojiData.map((emoji) => emoji.sc);
