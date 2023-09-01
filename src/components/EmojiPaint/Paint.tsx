@@ -29,7 +29,7 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
   const emptyMessage = (word: string) => word === '' || word === ' ';
   const disabled = message.every(emptyMessage) ? true : false;
   const clearAllEmoji = () => {
-    setMessage(new Array(numCells).fill(''));
+    setMessage(new Array(numCells).fill('&nbsp;'));
   };
   const formattedMsg = (msg: string[]) => {
     let msgGrid = '';
@@ -42,9 +42,7 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
 
   const copyMessage = async () => {
     const gridMsg = formattedMsg(message);
-    navigator.clipboard.writeText(gridMsg).then(() => {
-      alert('message copied!');
-    });
+    await navigator.clipboard.writeText(gridMsg);
   };
 
   /**
