@@ -41,7 +41,7 @@ export const Grid = ({
                     draggable={mode === 'select' ? false : true}
                     onDragOver={() => handleCellClick(rowIndex, colIndex)}>
                     <span data-code=":blank">
-                      {content === undefined ? '&nbsp;' : content}
+                      {content === undefined ? ' ' : content}
                     </span>
                   </td>
                 );
