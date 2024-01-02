@@ -14,7 +14,7 @@ export const EmojiPicker = ({
     <div>
       <div className="emoji-picker">
         <ul className="emoji-picker__list">
-          {emoji &&
+          {emoji.length > 0 &&
             emoji.map((symbol: string, index: number) => (
               <li key={`e${index}`}>
                 <button
