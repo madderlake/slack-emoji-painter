@@ -26,10 +26,10 @@ const EmojiPaint = ({ emoji }: PaintProps): JSX.Element => {
     setMessage(msgArr);
   };
 
-  const emptyMessage = (word: string) => word === '' || word === ' ';
+  const emptyMessage = (word: string) => word.trim() === '';
   const disabled = message.every(emptyMessage) ? true : false;
   const clearAllEmoji = () => {
-    setMessage(new Array(numCells).fill('&nbsp;'));
+    setMessage(new Array(numCells).fill(' '));
   };
   const formattedMsg = (msg: string[]) => {
     let msgGrid = '';
